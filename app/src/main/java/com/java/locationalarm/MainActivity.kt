@@ -29,7 +29,6 @@ class MainActivity : ComponentActivity() {
         setContent {
             val viewModel: LocationViewModel = viewModel()
             LocationAlarmTheme {
-                // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
@@ -94,8 +93,8 @@ fun LocationDisplay(
         } else {
             Text(text = "Location not available")
         }
-        Button(onClick = { /*TODO*/ }) {
-            if(locationUtils.hasLocationPermission(context)) {
+        Button(onClick = {
+            if (locationUtils.hasLocationPermission(context)) {
                 // Permission granted
                 locationUtils.requestLocationUpdates(viewModel)
             } else {
@@ -107,8 +106,25 @@ fun LocationDisplay(
                     )
                 )
             }
+        }) {
+            Text(text = "Get Location")
         }
-
     }
+}
 
+@Composable
+fun LocationMap(viewModel: LocationViewModel) {
+    val location = viewModel.location.value
+
+    // Include code here to display a map with a pin at the given location
+    // You can use a MapView or another mapping library to achieve this
+
+    // Example: Display a placeholder text for demonstration purposes
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Text(text = "Map View Placeholder")
+    }
 }
